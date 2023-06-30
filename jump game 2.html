@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n <= 1:
+            return 0
+        
+        jumps = 0
+        curr_end = 0
+        curr_max_reach = 0
+        
+        for i in range(n-1):
+            curr_max_reach = max(curr_max_reach, i + nums[i])
+            
+            if i == curr_end:
+                jumps += 1
+                curr_end = curr_max_reach
+        
+        return jumps
+
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Python):<br><br>
+
+We define a class Solution.<br><br>
+The jump method takes in a list of integers nums as input.<br><br>
+We get the length of the list nums and store it in the variable n.<br><br>
+If n is less than or equal to 1, it means the list is already at the last index or empty, so we return 0.<br><br>
+We initialize jumps as 0 to keep track of the minimum number of jumps.<br><br>
+We also initialize curr_end and curr_max_reach as 0. curr_end represents the current range's end, and curr_max_reach represents the maximum index that can be reached from the current range.<br><br>
+We iterate over the elements of the list nums up to the second-to-last index using a for loop.<br><br>
+For each element at index i, we update curr_max_reach as the maximum between its current value and the index i + nums[i].<br><br>
+If i reaches curr_end, it means we have reached the end of the current range. We increment jumps by 1 and update curr_end to the current maximum reachable index curr_max_reach.<br><br>
+Finally, we return the value of jumps, which represents the minimum number of jumps required to reach the last index of the array.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public int jump(int[] nums) {
+            int n = nums.length;
+            if (n <= 1) {
+                return 0;
+            }
+            
+            int jumps = 0;
+            int currEnd = 0;
+            int currMaxReach = 0;
+            
+            for (int i = 0; i < n - 1; i++) {
+                currMaxReach = Math.max(currMaxReach, i + nums[i]);
+                
+                if (i == currEnd) {
+                    jumps++;
+                    currEnd = currMaxReach;
+                }
+            }
+            
+            return jumps;
+        }
+    }
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Java):<br><br>
+
+    We define a class Solution.<br><br>
+    The jump method takes in an integer array nums as input.<br><br>
+    We get the length of the array nums and store it in the variable n.<br><br>
+    If n is less than or equal to 1, it means the array is already at the last index or empty, so we return 0.<br><br>
+    We initialize jumps as 0 to keep track of the minimum number of jumps.<br><br>
+    We also initialize currEnd and currMaxReach as 0. currEnd represents the current range's end, and currMaxReach represents the maximum index that can be reached from the current range.<br><br>
+    We iterate over the elements of the array nums up to the second-to-last index using a for loop.<br><br>
+    For each element at index i, we update currMaxReach as the maximum between its current value and the index i + nums[i].<br><br>
+    If i reaches currEnd, it means we have reached the end of the current range. We increment jumps by 1 and update currEnd to the current maximum reachable index currMaxReach.<br><br>
+    Finally, we return the value of jumps, which represents the minimum number of jumps required to reach the last index of the array.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            int jump(vector<int>& nums) {
+                int n = nums.size();
+                if (n <= 1) {
+                    return 0;
+                }
+                
+                int jumps = 0;
+                int currEnd = 0;
+                int currMaxReach = 0;
+                
+                for (int i = 0; i < n - 1; i++) {
+                    currMaxReach = max(currMaxReach, i + nums[i]);
+                    
+                    if (i == currEnd) {
+                        jumps++;
+                        currEnd = currMaxReach;
+                    }
+                }
+                
+                return jumps;
+            }
+        };
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+We define a class Solution.<br><br>
+The jump method takes in a vector of integers nums as input.<br><br>
+We get the size of the vector nums and store it in the variable n.<br><br>
+If n is less than or equal to 1, it means the vector is already at the last index or empty, so we return 0.<br><br>
+We initialize jumps as 0 to keep track of the minimum number of jumps.<br><br>
+We also initialize currEnd and currMaxReach as 0. currEnd represents the current range's end, and currMaxReach represents the maximum index that can be reached from the current range.<br><br>
+We iterate over the elements of the vector nums up to the second-to-last index using a for loop.<br><br>
+For each element at index i, we update currMaxReach as the maximum between its current value and the index i + nums[i].<br><br>
+If i reaches currEnd, it means we have reached the end of the current range. We increment jumps by 1 and update currEnd to the current maximum reachable index currMaxReach.<br><br>
+Finally, we return the value of jumps, which represents the minimum number of jumps required to reach the last index of the array.<br><br>
+That's it! You now have the implementations of the "Jump Game II" problem on LeetCode using Python, Java, and C++.<br><br>
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

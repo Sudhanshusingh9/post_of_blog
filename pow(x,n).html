@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n < 0:
+            x = 1 / x
+            n = -n
+        result = 1
+        while n > 0:
+            if n % 2 == 1:
+                result *= x
+            x *= x
+            n //= 2
+        return result
+ 
+      
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Python):<br><br>
+
+    We define a class Solution.<br><br>
+    The myPow method takes in a floating-point number x and an integer n as input and returns the result of raising x to the power n.<br><br>
+    If n is negative, we update x to be its reciprocal (1 / x) and make n positive by taking its absolute value (-n).<br><br>
+    We initialize a variable result to 1 to keep track of the cumulative result.<br><br>
+    We enter a while loop that continues as long as n is greater than 0.<br><br>
+    Inside the loop, we check if n is odd by checking if n % 2 == 1.<br><br>
+    If n is odd, we multiply the result by x.<br><br>
+    We update x by multiplying it with itself (x *= x) and divide n by 2 (n //= 2) to reduce the problem size.<br><br>
+    This process continues until n becomes 0.<br><br>
+    Finally, we return the result, which holds the final result of x raised to the power n.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public double myPow(double x, int n) {
+            if (n < 0) {
+                x = 1 / x;
+                n = -n;
+            }
+            double result = 1;
+            while (n > 0) {
+                if (n % 2 == 1) {
+                    result *= x;
+                }
+                x *= x;
+                n /= 2;
+            }
+            return result;
+        }
+    }
+    
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Python):<br><br>
+
+    We define a class Solution.<br><br>
+    The myPow method takes in a double x and an integer n as input and returns the result of raising x to the power n.<br><br>
+    If n is negative, we update x to be its reciprocal (1 / x) and make n positive by changing its sign (-n).<br><br>
+    We initialize a variable result to 1 to keep track of the cumulative result.<br><br>
+    We enter a while loop that continues as long as n is greater than 0.<br><br>
+    Inside the loop, we check if n is odd by checking if n % 2 == 1.<br><br>
+    If n is odd, we multiply result by x.<br><br>
+    We update x by multiplying it with itself (x *= x) and divide n by 2 (n /= 2) to reduce the problem size.<br><br>
+    This process continues until n becomes 0.<br><br>
+    Finally, we return the result, which holds the final result of x raised to the power n.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            double myPow(double x, int n) {
+                if (n < 0) {
+                    x = 1 / x;
+                    n = -n;
+                }
+                double result = 1;
+                while (n > 0) {
+                    if (n % 2 == 1) {
+                        result *= x;
+                    }
+                    x *= x;
+                    n /= 2;
+                }
+                return result;
+            }
+        };
+        
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+We define a class Solution.<br><br>
+The myPow method takes in a double x and an integer n as input and returns the result of raising x to the power n.<br><br>
+If n is negative, we update x to be its reciprocal (1 / x) and make n positive by changing its sign (-n).<br><br>
+We initialize a variable result to 1 to keep track of the cumulative result.<br><br>
+We enter a while loop that continues as long as n is greater than 0.<br><br>
+Inside the loop, we check if n is odd by checking if n % 2 == 1.<br><br>
+If n is odd, we multiply result by x.<br><br>
+We update x by multiplying it with itself (x *= x) and divide n by 2 (n /= 2) to reduce the problem size.<br><br>
+This process continues until n becomes 0.<br><br>
+Finally, we return the result, which holds the final result of x raised to the power n.<br><br>
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

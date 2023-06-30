@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def totalNQueens(self, n: int) -> int:
+        def backtrack(row, cols, diag1, diag2):
+            nonlocal count
+            if row == n:
+                count += 1
+                return
+            for col in range(n):
+                if col in cols or (row+col) in diag1 or (row-col) in diag2:
+                    continue
+                cols.add(col)
+                diag1.add(row+col)
+                diag2.add(row-col)
+                backtrack(row+1, cols, diag1, diag2)
+                cols.remove(col)
+                diag1.remove(row+col)
+                diag2.remove(row-col)
+
+        count = 0
+        backtrack(0, set(), set(), set())
+        return count
+
+      
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (python):<br><br>
+
+We define a class Solution.<br><br>
+The totalNQueens method takes in an integer n representing the size of the chessboard and returns the total number of distinct solutions.<br><br>
+We define a nested function backtrack that performs the backtracking algorithm.<br><br>
+The backtrack function takes in the current row, sets representing the occupied columns (cols), and sets representing the occupied diagonals (diag1 and diag2).<br><br>
+If the current row equals n, it means we have found a valid solution. We increment the count by 1.<br><br>
+Otherwise, we iterate over each column in the current row.<br><br>
+If the column is already occupied or any of the diagonals are occupied, we continue to the next column.<br><br>
+Otherwise, we add the column index to cols, the sum of row and column index to diag1, and the difference of row and column index to diag2.<br><br>
+We then recursively call backtrack for the next row (row+1).<br><br>
+After the recursive call, we backtrack by removing the column index from cols, the sum of row and column index from diag1, and the difference of row and column index from diag2.<br><br>
+In the main function, we initialize the count to 0 to keep track of the number of solutions.<br><br>
+We call the backtrack function with initial parameters: row=0, cols=set(), diag1=set(), diag2=set().<br><br><br>
+Finally, we return the count, which holds the total number of distinct solutions.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public int totalNQueens(int n) {
+            int[] count = new int[1];
+            int[] board = new int[n];
+            backtrack(0, board, count);
+            return count[0];
+        }
+        
+        private void backtrack(int row, int[] board, int[] count) {
+            if (row == board.length) {
+                count[0]++;
+                return;
+            }
+            for (int col = 0; col < board.length; col++) {
+                if (!isSafe(row, col, board)) {
+                    continue;
+                }
+                board[row] = col;
+                backtrack(row + 1, board, count);
+            }
+        }
+        
+        private boolean isSafe(int row, int col, int[] board) {
+            for (int i = 0; i < row; i++) {
+                if (board[i] == col || Math.abs(row - i) == Math.abs(col - board[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (java):<br><br>
+
+    We define a class Solution.<br><br>
+    The totalNQueens method takes in an integer n representing the size of the chessboard and returns the total number of distinct solutions.<br><br>
+    We create an array count of size 1 to hold the count of solutions.<br><br>
+    We create an array board of size n to represent the positions of queens on each row.<br><br>
+    We call the backtrack method with initial parameters: row=0, board, and count.<br><br>
+    The backtrack method performs the backtracking algorithm to find all valid solutions.<br><br>
+    If the current row equals the size of the board, it means we have found a valid solution. We increment the count by 1.<br><br>
+    Otherwise, we iterate over each column in the current row.<br><br>
+    If placing a queen in the current cell is not safe (conflicts with other queens), we continue to the next column.<br><br>
+    Otherwise, we set the current cell of board to the column index.<br><br>
+    We then recursively call backtrack for the next row (row+1).<br><br>
+    The isSafe function is used to check if placing a queen in a particular cell is safe (does not conflict with other queens).<br><br>
+    It checks if there is no queen in the same column and no queen in the same diagonal (by comparing the differences in row and column indices).<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+   
+    class Solution {
+        public:
+            int totalNQueens(int n) {
+                int count = 0;
+                vector<int> board(n);
+                backtrack(0, board, count);
+                return count;
+            }
+            
+        private:
+            void backtrack(int row, vector<int>& board, int& count) {
+                if (row == board.size()) {
+                    count++;
+                    return;
+                }
+                for (int col = 0; col < board.size(); col++) {
+                    if (!isSafe(row, col, board)) {
+                        continue;
+                    }
+                    board[row] = col;
+                    backtrack(row + 1, board, count);
+                }
+            }
+            
+            bool isSafe(int row, int col, vector<int>& board) {
+                for (int i = 0; i < row; i++) {
+                    if (board[i] == col || abs(row - i) == abs(col - board[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        };
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+    We define a class Solution.<br><br>
+    The totalNQueens method takes in an integer n representing the size of the chessboard and returns the total number of distinct solutions.<br><br>
+    We initialize count to 0 to keep track of the number of solutions.<br><br>
+    We create a vector board of size n to represent the positions of queens on each row.<br><br>
+    We call the backtrack method with initial parameters: row=0, board, and count.<br><br>
+    The backtrack method performs the backtracking algorithm to find all valid solutions.<br><br>
+    If the current row equals the size of the board, it means we have found a valid solution. We increment count by 1.<br><br>
+    Otherwise, we iterate over each column in the current row.<br><br>
+    If placing a queen in the current cell is not safe (conflicts with other queens), we continue to the next column.<br><br>
+    Otherwise, we set the current cell of board to the column index.<br><br>
+    We then recursively call backtrack for the next row (row+1).<br><br>
+    The isSafe function is used to check if placing a queen in a particular cell is safe (does not conflict with other queens).<br><br>
+    It checks if there is no queen in the same column and no queen in the same diagonal (by comparing the differences in row and column indices).<br><br>
+     
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

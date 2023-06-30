@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        
+        n = len(height)
+        left_max = [0] * n
+        right_max = [0] * n
+        left_max[0] = height[0]
+        right_max[n-1] = height[n-1]
+        total_water = 0
+        
+        for i in range(1, n):
+            left_max[i] = max(left_max[i-1], height[i])
+        
+        for i in range(n-2, -1, -1):
+            right_max[i] = max(right_max[i+1], height[i])
+        
+        for i in range(n):
+            total_water += min(left_max[i], right_max[i]) - height[i]
+        
+        return total_water
+
+
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (python):<br><br>
+
+    We define a class Solution.<br><br>
+    The trap method takes in a list of integers height as input.<br><br>
+    If the height list is empty, there are no bars to trap water, so we return 0.<br><br>
+    We get the length of the height list and store it in the variable n.<br><br>
+    We initialize two arrays, left_max and right_max, with all elements set to 0, to store the maximum bar heights to the left and right of each index, respectively.<br><br>
+    We initialize the first elements of left_max and right_max with the heights of the first and last bars in the height list.<br><br>
+    We initialize the variable total_water to 0, which will store the total amount of trapped water.<br><br>
+    We iterate over the range from 1 to n using a for loop to calculate the maximum bar height to the left of each index. We update left_max[i] as the maximum between the previous left_max[i-1] and the height of the current bar height[i].<br><br>
+    We then iterate over the range from n-2 to -1 with a step of -1 using a for loop to calculate the maximum bar height to the right of each index. We update right_max[i] as the maximum between the previous right_max[i+1] and the height of the current bar height[i].<br><br>
+    Finally, we iterate over the range from 0 to n using a for loop and calculate the trapped water at each index as the minimum between left_max[i] and right_max[i], minus the height of the current bar height[i]. We add this value to total_water.<br><br>
+    We return the value of total_water, which represents the total amount of water that can be trapped between the bars.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+  
+    class Solution {
+        public int trap(int[] height) {
+            if (height == null || height.length == 0) {
+                return 0;
+            }
+            
+            int n = height.length;
+            int[] leftMax = new int[n];
+            int[] rightMax = new int[n];
+            leftMax[0] = height[0];
+            rightMax[n-1] = height[n-1];
+            int totalWater = 0;
+            
+            for (int i = 1; i < n; i++) {
+                leftMax[i] = Math.max(leftMax[i-1], height[i]);
+            }
+            
+            for (int i = n-2; i >= 0; i--) {
+                rightMax[i] = Math.max(rightMax[i+1], height[i]);
+            }
+            
+            for (int i = 0; i < n; i++) {
+                totalWater += Math.min(leftMax[i], rightMax[i]) - height[i];
+            }
+            
+            return totalWater;
+        }
+    }
+    
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Java):<br><br>
+
+We define a class Solution.<br><br>
+The trap method takes in an integer array height as input.<br><br>
+If the height array is null or empty, there are no bars to trap water, so we return 0.<br><br>
+We get the length of the height array and store it in the variable n.<br><br>
+We initialize two arrays, leftMax and rightMax, with all elements set to 0, to store the maximum bar heights to the left and right of each index, respectively.<br><br>
+We initialize the first elements of leftMax and rightMax with the heights of the first and last bars in the height array.<br><br>
+We initialize the variable totalWater to 0, which will store the total amount of trapped water.<br><br>
+We iterate over the range from 1 to n using a for loop to calculate the maximum bar height to the left of each index. We update leftMax[i] as the maximum between the previous leftMax[i-1] and the height of the current bar height[i].<br><br>
+We then iterate over the range from n-2 to 0 with a step of -1 using a for loop to calculate the maximum bar height to the right of each index. We update rightMax[i] as the maximum between the previous rightMax[i+1] and the height of the current bar height[i].<br><br>
+Finally, we iterate over the range from 0 to n using a for loop and calculate the trapped water at each index as the minimum between leftMax[i] and rightMax[i], minus the height of the current bar height[i]. We add this value to totalWater.<br><br>
+We return the value of totalWater, which represents the total amount of water that can be trapped between the bars.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            int trap(vector<int>& height) {
+                if (height.empty()) {
+                    return 0;
+                }
+                
+                int n = height.size();
+                vector<int> leftMax(n, 0);
+                vector<int> rightMax(n, 0);
+                leftMax[0] = height[0];
+                rightMax[n-1] = height[n-1];
+                int totalWater = 0;
+                
+                for (int i = 1; i < n; i++) {
+                    leftMax[i] = max(leftMax[i-1], height[i]);
+                }
+                
+                for (int i = n-2; i >= 0; i--) {
+                    rightMax[i] = max(rightMax[i+1], height[i]);
+                }
+                
+                for (int i = 0; i < n; i++) {
+                    totalWater += min(leftMax[i], rightMax[i]) - height[i];
+                }
+                
+                return totalWater;
+            }
+        };
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+    We define a class Solution.<br><br>
+    The trap method takes in a vector of integers height as input.<br><br>
+    If the height vector is empty, there are no bars to trap water, so we return 0.<br><br>
+    We get the size of the height vector and store it in the variable n.<br><br>
+    We initialize two vectors, leftMax and rightMax, with all elements set to 0, to store the maximum bar heights to the left and right of each index, respectively.<br><br>
+    We initialize the first elements of leftMax and rightMax with the heights of the first and last bars in the height vector.<br><br>
+    We initialize the variable totalWater to 0, which will store the total amount of trapped water.<br><br>
+    We iterate over the range from 1 to n using a for loop to calculate the maximum bar height to the left of each index. We update leftMax[i] as the maximum between the previous leftMax[i-1] and the height of the current bar height[i].<br><br>
+    We then iterate over the range from n-2 to 0 with a step of -1 using a for loop to calculate the maximum bar height to the right of each index. We update rightMax[i] as the maximum between the previous rightMax[i+1] and the height of the current bar height[i].<br><br>
+    Finally, we iterate over the range from 0 to n using a for loop and calculate the trapped water at each index as the minimum between leftMax[i] and rightMax[i], minus the height of the current bar height[i]. We add this value to totalWater.<br><br>
+    We return the value of totalWater, which represents the total amount of water that can be trapped between the bars.<br><br>
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

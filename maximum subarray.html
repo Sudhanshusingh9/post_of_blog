@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = nums[0]  # Initialize max_sum to the first element
+        current_sum = nums[0]  # Initialize current_sum to the first element
+        for num in nums[1:]:
+            current_sum = max(num, current_sum + num)  # Update current_sum
+            max_sum = max(max_sum, current_sum)  # Update max_sum
+        return max_sum
+
+      
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (python):<br><br>
+
+    We define a class Solution.<br><br>
+    The maxSubArray method takes in a list of integers nums and returns the maximum sum of any contiguous subarray within the given array.<br><br>
+    We initialize max_sum and current_sum to the first element of nums.<br><br>
+    We iterate through the remaining elements of nums starting from the second element.<br><br>
+    For each element, we calculate the maximum sum of subarray ending at that element by comparing the element itself (num) and the sum of the previous subarray and the current element (current_sum + num).<br><br>
+    We update current_sum with the maximum of these two values.<br><br>
+    We update max_sum with the maximum of the current max_sum and the updated current_sum.<br><br>
+    Finally, we return max_sum, which holds the maximum sum of any contiguous subarray within the given array.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public int maxSubArray(int[] nums) {
+            int maxSum = nums[0];  // Initialize maxSum to the first element
+            int currentSum = nums[0];  // Initialize currentSum to the first element
+            for (int i = 1; i < nums.length; i++) {
+                currentSum = Math.max(nums[i], currentSum + nums[i]);  // Update currentSum
+                maxSum = Math.max(maxSum, currentSum);  // Update maxSum
+            }
+            return maxSum;
+        }
+    }
+    
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (java):<br><br>
+
+    We define a class Solution.<br><br>
+    The maxSubArray method takes in an array of integers nums and returns the maximum sum of any contiguous subarray within the given array.<br><br>
+    We initialize maxSum and currentSum to the first element of nums.<br><br>
+    We iterate through the remaining elements of nums starting from the second element using a for loop.<br><br>
+    For each element, we calculate the maximum sum of subarray ending at that element by comparing the element itself (nums[i]) and the sum of the previous subarray and the current element (currentSum + nums[i]).<br><br>
+    We update currentSum with the maximum of these two values using the Math.max function.<br><br>
+    We update maxSum with the maximum of the current maxSum and the updated currentSum using the Math.max function.<br><br>
+    Finally, we return maxSum, which holds the maximum sum of any contiguous subarray within the given array.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            int maxSubArray(vector<int>& nums) {
+                int maxSum = nums[0];  // Initialize maxSum to the first element
+                int currentSum = nums[0];  // Initialize currentSum to the first element
+                for (int i = 1; i < nums.size(); i++) {
+                    currentSum = max(nums[i], currentSum + nums[i]);  // Update currentSum
+                    maxSum = max(maxSum, currentSum);  // Update maxSum
+                }
+                return maxSum;
+            }
+        };
+        
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+We define a class Solution.<br><br>
+The maxSubArray method takes in a vector nums of integers and returns the maximum sum of any contiguous subarray within the given array.<br><br>
+We initialize maxSum and currentSum to the first element of nums.<br><br>
+We iterate through the remaining elements of nums starting from the second element using a for loop.<br><br>
+For each element, we calculate the maximum sum of subarray ending at that element by comparing the element itself (nums[i]) and the sum of the previous subarray and the current element (currentSum + nums[i]).<br><br>
+We update currentSum with the maximum of these two values using the max function.<br><br>
+We update maxSum with the maximum of the current maxSum and the updated currentSum using the max function.<br><br>
+Finally, we return maxSum, which holds the maximum sum of any contiguous subarray within the given array.<br><br>
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

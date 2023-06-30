@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    from collections import defaultdict
+
+    class Solution:
+        def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+            anagrams = defaultdict(list)
+            for word in strs:
+                sorted_word = ''.join(sorted(word))
+                anagrams[sorted_word].append(word)
+            return list(anagrams.values())
+      
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Python):<br><br> 
+
+We import the defaultdict class from the collections module to create a dictionary that automatically initializes empty lists as values for new keys.<br><br> 
+We define a class Solution.<br><br> 
+The groupAnagrams method takes in a list of strings strs as input and returns a list of lists representing the groups of anagrams.<br><br> 
+Within the groupAnagrams method, we initialize a defaultdict called anagrams to store the anagram groups.<br><br> 
+We iterate over each word in the input list strs.<br><br> 
+For each word, we sort its characters and create a sorted word.<br><br> 
+We use the sorted word as the key in the anagrams dictionary and append the original word to the corresponding value list.<br><br> 
+Finally, we convert the values of anagrams to a list using the list function and return the result.<br><br> 
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public List<List<String>> groupAnagrams(String[] strs) {
+            Map<String, List<String>> anagrams = new HashMap<>();
+            for (String word : strs) {
+                char[] chars = word.toCharArray();
+                Arrays.sort(chars);
+                String sortedWord = new String(chars);
+                if (!anagrams.containsKey(sortedWord)) {
+                    anagrams.put(sortedWord, new ArrayList<>());
+                }
+                anagrams.get(sortedWord).add(word);
+            }
+            return new ArrayList<>(anagrams.values());
+        }
+    }
+      
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Java):<br><br> 
+
+    We define a class Solution.<br><br> 
+    The groupAnagrams method takes in an array of strings strs as input and returns a list of lists representing the groups of anagrams.<br><br> 
+    Within the groupAnagrams method, we initialize a HashMap called anagrams to store the anagram groups. The key is the sorted word, and the value is a list of anagrams.<br><br> 
+    We iterate over each word in the input array strs.<br><br> 
+    For each word, we convert it to a character array using toCharArray() and sort the characters using Arrays.sort().<br><br> 
+    We create a sorted word by creating a new string from the sorted character array.<br><br> 
+    We check if the anagrams map contains the sorted word as a key. If not, we create a new entry in the map with the sorted word as the key and an empty array list as the value.<br><br> 
+    We then retrieve the list of anagrams for the sorted word from the map using anagrams.get(sortedWord) and add the original word to the list.<br><br> 
+    Finally, we convert the values of anagrams to a list using the ArrayList constructor and return the result. <br><br> 
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            vector<vector<string>> groupAnagrams(vector<string>& strs) {
+                unordered_map<string, vector<string>> anagrams;
+                for (const string& word : strs) {
+                    string sortedWord = word;
+                    sort(sortedWord.begin(), sortedWord.end());
+                    anagrams[sortedWord].push_back(word);
+                }
+                vector<vector<string>> result;
+                for (const auto& entry : anagrams) {
+                    result.push_back(entry.second);
+                }
+                return result;
+            }
+        };
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br> 
+
+    We define a class Solution.<br><br> 
+    The groupAnagrams method takes in a reference to a vector of strings strs as input and returns a vector of vectors representing the groups of anagrams.<br><br> 
+    Within the groupAnagrams method, we initialize an unordered_map called anagrams to store the anagram groups. The key is the sorted word, and the value is a vector of anagrams.<br><br> 
+    We iterate over each word in the input vector strs.<br><br> 
+    For each word, we create a copy of the word called sortedWord.<br><br> 
+    We sort the characters in sortedWord using the sort function from the <algorithm> library.<br><br> 
+    We use sortedWord as the key in the anagrams map and push the original word into the corresponding value vector.<br><br> 
+    After iterating through all the words, we create a vector called result to store the final result.<br><br> 
+    We iterate over each entry in the anagrams map using a range-based for loop.<br><br> 
+    For each entry, we push the value vector (representing a group of anagrams) into the result vector.<br><br> 
+    Finally, we return the result vector.<br><br>  
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

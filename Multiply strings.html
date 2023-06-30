@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        if num1 == "0" or num2 == "0":
+            return "0"
+        
+        m, n = len(num1), len(num2)
+        result = [0] * (m + n)
+        
+        for i in range(m-1, -1, -1):
+            for j in range(n-1, -1, -1):
+                product = int(num1[i]) * int(num2[j])
+                pos1, pos2 = i + j, i + j + 1
+                total = product + result[pos2]
+                result[pos1] += total // 10
+                result[pos2] = total % 10
+        
+        start = 0
+        while start < len(result) and result[start] == 0:
+            start += 1
+        
+        return ''.join(map(str, result[start:]))
+
+
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Python):<br><br>
+
+    We define a class Solution.<br><br>
+    The multiply method takes in two strings num1 and num2 as input and returns the product of the two numbers as a string.<br><br>
+    If either num1 or num2 is "0", the product will be "0", so we return "0" in that case.<br><br>
+    We get the lengths of num1 and num2 and store them in variables m and n, respectively.<br><br>
+    We initialize a result list with zeros, with a length equal to the sum of the lengths of num1 and num2.<br><br>
+    We iterate over the characters of num1 in reverse order using a for loop.<br><br>
+    Within the outer loop, we iterate over the characters of num2 in reverse order using another for loop.<br><br>
+    For each pair of digits, we calculate their product and store it in the variable product.<br><br>
+    We calculate two positions, pos1 and pos2, which represent the positions in the result list where the product will be added.<br><br>
+    We add the product to the current value at pos2 and update result[pos1] and result[pos2] accordingly, taking care of carrying over the digits to the left if necessary.<br><br>
+    After both loops finish, we have the complete product stored in the result list.<br><br>
+    We determine the starting index of the significant digits by finding the first non-zero digit from the left.<br><br>
+    We convert the remaining digits in the result list to strings and concatenate them using join to form the final product string.<br><br>
+    We return the product string.<br><br>
+  </p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    class Solution {
+        public String multiply(String num1, String num2) {
+            if (num1.equals("0") || num2.equals("0")) {
+                return "0";
+            }
+            
+            int m = num1.length();
+            int n = num2.length();
+            int[] result = new int[m + n];
+            
+            for (int i = m - 1; i >= 0; i--) {
+                for (int j = n - 1; j >= 0; j--) {
+                    int product = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                    int pos1 = i + j;
+                    int pos2 = i + j + 1;
+                    int total = product + result[pos2];
+                    result[pos1] += total / 10;
+                    result[pos2] = total % 10;
+                }
+            }
+            
+            StringBuilder sb = new StringBuilder();
+            int start = 0;
+            while (start < result.length && result[start] == 0) {
+                start++;
+            }
+            
+            for (int i = start; i < result.length; i++) {
+                sb.append(result[i]);
+            }
+            
+            return sb.toString();
+        }
+    }
+    
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Java):<br><br>
+
+    We define a class Solution.<br><br>
+    The multiply method takes in two strings num1 and num2 as input and returns the product of the two numbers as a string.<br><br>
+    If either num1 or num2 is "0", the product will be "0", so we return "0" in that case.<br><br>
+    We get the lengths of num1 and num2 and store them in variables m and n, respectively.<br><br>
+    We initialize an integer array result with zeros, with a length equal to the sum of the lengths of num1 and num2.<br><br>
+    We iterate over the characters of num1 in reverse order using a for loop.<br><br>
+    Within the outer loop, we iterate over the characters of num2 in reverse order using another for loop.<br><br>
+    For each pair of digits, we calculate their product and store it in the variable product.<br><br>
+    We calculate two positions, pos1 and pos2, which represent the positions in the result array where the product will be added.<br><br>
+    We add the product to the current value at pos2 and update result[pos1] and result[pos2] accordingly, taking care of carrying over the digits to the left if necessary.<br><br>
+    After both loops finish, we have the complete product stored in the result array.<br><br>
+    We create a StringBuilder object to efficiently construct the product string.<br><br>
+    We determine the starting index of the significant digits by finding the first non-zero digit from the left.<br><br>
+    We iterate over the elements of the result array starting from the significant digits and append them to the StringBuilder.<br><br>
+    Finally, we convert the StringBuilder to a string using toString and return the product string.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+    class Solution {
+        public:
+            string multiply(string num1, string num2) {
+                if (num1 == "0" || num2 == "0") {
+                    return "0";
+                }
+                
+                int m = num1.length();
+                int n = num2.length();
+                vector<int> result(m + n, 0);
+                
+                for (int i = m - 1; i >= 0; i--) {
+                    for (int j = n - 1; j >= 0; j--) {
+                        int product = (num1[i] - '0') * (num2[j] - '0');
+                        int pos1 = i + j;
+                        int pos2 = i + j + 1;
+                        int total = product + result[pos2];
+                        result[pos1] += total / 10;
+                        result[pos2] = total % 10;
+                    }
+                }
+                
+                string res = "";
+                int start = 0;
+                while (start < result.size() && result[start] == 0) {
+                    start++;
+                }
+                
+                for (int i = start; i < result.size(); i++) {
+                    res += to_string(result[i]);
+                }
+                
+                return res;
+            }
+        };
+        
+        
+</code></pre>
+<p style="font-size:15px;">
+    Explanation (c++):<br><br>
+
+We define a class Solution.<br><br>
+The multiply method takes in two strings num1 and num2 as input and returns the product of the two numbers as a string.<br><br>
+If either num1 or num2 is "0", the product will be "0", so we return "0" in that case.<br><br>
+We get the lengths of num1 and num2 and store them in variables m and n, respectively.<br><br>
+We initialize a vector result with zeros, with a length equal to the sum of the lengths of num1 and num2.<br><br>
+We iterate over the characters of num1 in reverse order using a for loop.<br><br>
+Within the outer loop, we iterate over the characters of num2 in reverse order using another for loop.<br><br>
+For each pair of digits, we calculate their product and store it in the variable product.<br><br>
+We calculate two positions, pos1 and pos2, which represent the positions in the result vector where the product will be added.<br><br>
+We add the product to the current value at pos2 and update result[pos1] and result[pos2] accordingly, taking care of carrying over the digits to the left if necessary.<br><br>
+After both loops finish, we have the complete product stored in the result vector.<br><br>
+We create an empty string res to store the product string.<br><br>
+We determine the starting index of the significant digits by finding the first non-zero digit from the left.<br><br>
+We iterate over the elements of the result vector starting from the significant digits and append them to the res string using the to_string function.<br><br>
+Finally, we return the res string.<br><br>
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>
