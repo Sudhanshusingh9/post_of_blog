@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">  
+    class Solution:
+    def combinationSum2(self, candidates, target):
+        result = []
+        candidates.sort()  # Sort the candidates to handle duplicates properly
+        self.backtrack(candidates, target, 0, [], result)
+        return result
+
+    def backtrack(self, candidates, target, start, path, result):
+        if target < 0:  # If target becomes negative, backtrack
+            return
+        elif target == 0:  # If target becomes zero, a valid combination is found
+            result.append(path)
+            return
+        else:
+            for i in range(start, len(candidates)):
+                if i > start and candidates[i] == candidates[i-1]:
+                    continue  # Skip duplicates to avoid duplicate combinations
+                self.backtrack(candidates, target-candidates[i], i+1, path+[candidates[i]], result)
+  
+</code></pre>
+
+<p style="font-size:15px;">
+    Explonation (Python):<br><br>
+
+    We define a class Solution with the combinationSum2 method.<br><br>
+The combinationSum2 method takes in the candidates array and the target sum as input.<br><br>
+We start by sorting the candidates array to handle duplicates properly.<br><br>
+We initialize an empty result list to store the valid combinations.<br><br>
+We then call the backtrack method, passing the candidates, target, starting index 0, an empty path, and the result list.<br><br>
+The backtrack method implements the backtracking algorithm to find all unique combinations.<br><br>
+If the target becomes negative, we return to backtrack.<br><br>
+If the target becomes zero, it means we have found a valid combination, so we append the path to the result list.<br><br>
+Otherwise, we iterate over the candidates array, starting from the start index.<br><br>
+If the current index i is greater than start and the current candidate is the same as the previous one, we skip it to avoid duplicate combinations.<br><br>
+Otherwise, we call the backtrack method recursively, subtracting the current candidate from the target, incrementing the start index, and appending the current candidate to the path.<br><br>
+  
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+ import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);  // Sort the candidates to handle duplicates properly
+        backtrack(candidates, target, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(int[] candidates, int target, int start, List<Integer> path, List<List<Integer>> result) {
+        if (target < 0) {  // If target becomes negative, backtrack
+            return;
+        } else if (target == 0) {  // If target becomes zero, a valid combination is found
+            result.add(new ArrayList<>(path));
+            return;
+        } else {
+            for (int i = start; i < candidates.length; i++) {
+                if (i > start && candidates[i] == candidates[i - 1]) {
+                    continue;  // Skip duplicates to avoid duplicate combinations
+                }
+                path.add(candidates[i]);
+                backtrack(candidates, target - candidates[i], i + 1, path, result);
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+}
+</code></pre>
+
+<p style="font-size:15px;">
+    Explonation (Java):<br><br>
+
+    We define a class Solution with the combinationSum2 method.<br><br>
+The combinationSum2 method takes in the candidates array and the target sum as input.<br><br>
+We start by creating an ArrayList to store the valid combinations.<br><br>
+We sort the candidates array to handle duplicates properly.<br><br>
+We call the backtrack method, passing the candidates, target, starting index 0, an empty ArrayList for path, and the result list.<br><br>
+The backtrack method implements the backtracking algorithm to find all unique combinations.<br><br>
+If the target becomes negative, we return to backtrack.<br><br>
+If the target becomes zero, it means we have found a valid combination, so we add a copy of the path list to the result list.<br><br>
+Otherwise, we iterate over the candidates array, starting from the start index.<br><br>
+If the current index i is greater than start and the current candidate is the same as the previous one, we skip it to avoid duplicate combinations.<br><br>
+Otherwise, we add the current candidate to the path list and call the backtrack method recursively, subtracting the current candidate from the target, incrementing the start index, and passing the updated path list.<br><br>
+After the recursive call, we remove the last element from the path list to backtrack and explore other combinations.<br><br>
+   
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+  class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> result;
+        sort(candidates.begin(), candidates.end());  // Sort the candidates to handle duplicates properly
+        backtrack(candidates, target, 0, {}, result);
+        return result;
+    }
+
+private:
+    void backtrack(vector<int>& candidates, int target, int start, vector<int> path, vector<vector<int>>& result) {
+        if (target < 0) {  // If target becomes negative, backtrack
+            return;
+        } else if (target == 0) {  // If target becomes zero, a valid combination is found
+            result.push_back(path);
+            return;
+        } else {
+            for (int i = start; i < candidates.size(); i++) {
+                if (i > start && candidates[i] == candidates[i - 1]) {
+                    continue;  // Skip duplicates to avoid duplicate combinations
+                }
+                path.push_back(candidates[i]);
+                backtrack(candidates, target - candidates[i], i + 1, path, result);
+                path.pop_back();
+            }
+        }
+    }
+};
+</code></pre>
+<p style="font-size:15px;">
+    Explonation (c++):<br><br>
+
+    We define a class Solution.<br><br>
+    The combinationSum2 method takes in a reference to the candidates vector and the target sum as input.<br><br>
+    We start by creating an empty vector result to store the valid combinations.<br><br>
+    We sort the candidates vector to handle duplicates properly.<br><br>
+    We call the backtrack method, passing the candidates, target, starting index 0, an empty vector path, and the result vector.<br><br>
+    The backtrack method implements the backtracking algorithm to find all unique combinations.<br><br>
+    If the target becomes negative, we return to backtrack.<br><br>
+    If the target becomes zero, it means we have found a valid combination, so we add the path vector to the result vector.<br><br>
+    Otherwise, we iterate over the candidates vector, starting from the start index.<br><br>
+    If the current index i is greater than start and the current candidate is the same as the previous one, we skip it to avoid duplicate combinations.<br><br>
+    Otherwise, we add the current candidate to the path vector and call the backtrack method recursively, subtracting the current candidate from the target, incrementing the start index, and passing the updated path vector.<br><br>
+    After the recursive call, we remove the last element from the path vector to backtrack and explore other combinations.<br><br>
+  
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>

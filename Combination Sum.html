@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #04f03f;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Python</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Java</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">C++</button>
+</div>
+<!--python start-->
+<div id="London" class="tabcontent">
+<pre><code class="python" style="font-size:15px;">    
+  class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        self.backtrack(result, [], candidates, target, 0)
+        return result
+    
+    def backtrack(self, result, tempList, candidates, remain, start):
+        if remain < 0:
+            return
+        elif remain == 0:
+            result.append(list(tempList))
+        else:
+            for i in range(start, len(candidates)):
+                tempList.append(candidates[i])
+                self.backtrack(result, tempList, candidates, remain - candidates[i], i)
+                tempList.pop()
+
+
+</code></pre>
+
+<p style="font-size:15px;">
+  Explonation (python): <br><br>
+
+  The combinationSum method takes a list of integers candidates and a target integer target as input and returns a list of all unique combinations that sum up to the target.<br><br>
+  We initialize an empty list result to store the combinations.<br><br>
+  We call the backtrack method to find the combinations recursively.<br><br>
+  The backtrack method takes the following parameters: result (the result list), tempList (the current combination), candidates (the input list), remain (the remaining target sum), and start (the starting index in the list).<br><br>
+  In the backtrack method, we have three base cases:<br><br>
+  If remain is negative, it means the current combination is invalid, so we return.<br><br>
+  If remain is zero, it means we have found a valid combination, so we add it to the result list.<br><br>
+  If none of the base cases is met, we iterate through the candidates starting from the start index.<br><br>
+  For each candidate, we append it to the tempList and recursively call the backtrack method with the updated remain (subtracting the candidate value) and the same start index (to allow duplicates).<br><br>
+  After the recursive call, we remove the last element from the tempList to backtrack and try other combinations.<br><br>
+  The final result list contains all the valid combinations, which we return as the output.<br><br>
+</p>
+</div>
+<!--python end-->
+
+
+<!--java start-->
+<div id="Paris" class="tabcontent">
+<pre><code class="java" style="font-size:15px;">
+    import java.util.ArrayList;
+    import java.util.List;
+    
+    class Solution {
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            List<List<Integer>> result = new ArrayList<>();
+    
+            // Call the backtrack function to find combinations
+            backtrack(result, new ArrayList<>(), candidates, target, 0);
+    
+            return result;
+        }
+    
+        private void backtrack(List<List<Integer>> result, List<Integer> tempList, int[] candidates, int remain, int start) {
+            // If the remaining target is negative, stop the current path
+            if (remain < 0) {
+                return;
+            }
+            // If the remaining target is zero, add the combination to the result
+            else if (remain == 0) {
+                result.add(new ArrayList<>(tempList));
+            } else {
+                // Iterate through the candidates array
+                for (int i = start; i < candidates.length; i++) {
+                    // Add the current candidate to the temporary combination list
+                    tempList.add(candidates[i]);
+                    // Recursively call the backtrack function with the updated remaining target and start index
+                    backtrack(result, tempList, candidates, remain - candidates[i], i);
+                    // Remove the last added candidate to explore other possibilities
+                    tempList.remove(tempList.size() - 1);
+                }
+            }
+        }
+    }
+    
+</code></pre>
+
+<p style="font-size:15px;">
+    Explanation (Java): <br><br>
+
+    The combinationSum function takes an array of candidates and a target integer as input and returns a list of combinations.<br><br>
+    Inside the function, a list called result is created to store the resulting combinations.<br><br>
+    The backtrack function is called with the result list, an empty tempList, the candidates array, the target value, and the starting index 0.<br><br>
+    The backtrack function is a recursive helper function that explores all possible combinations of candidates.<br><br>
+    In the backtrack function, if the remaining target becomes negative, it means that the current path does not lead to a valid combination, so the function returns.<br><br>
+    If the remaining target becomes zero, it means a valid combination is found. The current tempList is added to the result list as a new combination.<br><br>
+    If the remaining target is positive, the function iterates through the candidates array starting from the given start index.<br><br>
+    For each candidate, it is added to the tempList, and the backtrack function is recursively called with the updated remaining target and the current index.<br><br>
+    After the recursive call, the last added candidate is removed from the tempList to explore other possibilities.<br><br>
+<p>
+  
+</div>
+<!--java end-->
+
+<!--c++ start-->  
+<div id="Tokyo" class="tabcontent">
+<pre><code class="cpp" style="font-size:15px;">    
+  class Solution {
+    public:
+        vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+            vector<vector<int>> result;
+            vector<int> tempList;
+            backtrack(result, tempList, candidates, target, 0);
+            return result;
+        }
+        
+        void backtrack(vector<vector<int>>& result, vector<int>& tempList, vector<int>& candidates, int remain, int start) {
+            if (remain < 0) {
+                return;
+            } else if (remain == 0) {
+                result.push_back(tempList);
+            } else {
+                for (int i = start; i < candidates.size(); i++) {
+                    tempList.push_back(candidates[i]);
+                    backtrack(result, tempList, candidates, remain - candidates[i], i);
+                    tempList.pop_back();
+                }
+            }
+        }
+    };
+    
+</code></pre>
+
+<p style="font-size:15px;">
+  Explanation (C++): <br><br>
+
+  The combinationSum function takes a vector of integers candidates and a target integer target as input and returns a vector of all unique combinations that sum up to the target. <br><br>
+We initialize an empty vector result to store the combinations. <br><br>
+We call the backtrack function to find the combinations recursively. <br><br>
+The backtrack function takes the following parameters: result (the result vector), tempList (the current combination), candidates (the input vector), remain (the remaining target sum), and start (the starting index in the vector). <br><br>
+In the backtrack function, we have three base cases: <br><br>
+If remain is negative, it means the current combination is invalid, so we return. <br><br>
+If remain is zero, it means we have found a valid combination, so we add it to the result vector. <br><br>
+If none of the base cases is met, we iterate through the candidates starting from the start index. <br><br>
+For each candidate, we push it to the tempList and recursively call the backtrack function with the updated remain (subtracting the candidate value) and the same start index (to allow duplicates). <br><br>
+After the recursive call, we pop the last element from the tempList to backtrack and try other combinations. <br><br>
+The final result vector contains all the valid combinations, which we return as the output. <br><br>
+These solutions use backtracking to find all possible combinations that sum up to the target value. They have a time complexity of O(N^target), where N is the length of the candidates array/list. <br><br>
+</p>
+</div>
+<!--c++ end-->>
+  
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  
+// Show the first tab by default
+document.getElementById("London").style.display = "block";
+document.getElementsByClassName("tablinks")[0].className += " active";
+</script>
+   
+</body>
+</html>
